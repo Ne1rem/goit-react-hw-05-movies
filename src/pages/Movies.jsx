@@ -43,8 +43,7 @@ const Movies = () => {
         }
   
         setSearchedMovie(data.results);
-  
-        // Встановлюємо параметр query в URL
+
         setParams({ query });
       })
       .catch(err => console.log(err));
