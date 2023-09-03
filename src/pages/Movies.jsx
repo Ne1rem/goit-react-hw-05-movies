@@ -1,37 +1,26 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
-
 import '../components/movies.css';
-
 import css from '../components/styles/movies.module.css';
 
 const Movies = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [SearchedMovie, setSearchedMovie] = useState(null);
   const [params, setParams] = useSearchParams();
-
-  useEffect(() => {
-    const queryParams = new URLSearchParams(params.toString());
-    const queryParam = queryParams.get('query');
-    if (queryParam) {
-      setSearchQuery(queryParam);
-    }
-  }, [params]);
-
+  
   const handleInputValue = e => {
     setSearchQuery(e.target.value);
   };
 
-  const fetchRequest = () => {
-    if (searchQuery === '') {
+  const fetchRequest = useCallback((query) => {
+    if (query === '') {
       return;
     }
-
+  
     fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&api_key=a42bf4f31f7d8fb3cfc076b340ef7462`
+      `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=a42bf4f31f7d8fb3cfc076b340ef7462`
     )
       .then(res => res.json())
       .then(data => {
@@ -42,8 +31,8 @@ const Movies = () => {
             destination: 'https://github.com/apvarun/toastify-js',
             newWindow: true,
             close: true,
-            gravity: 'top', 
-            position: 'center', 
+            gravity: 'top',
+            position: 'center',
             stopOnFocus: true,
             style: {
               background:
@@ -52,18 +41,29 @@ const Movies = () => {
             onClick: function () {},
           }).showToast();
         }
-
+  
         setSearchedMovie(data.results);
-
-        setParams({ query: searchQuery });
+  
+        // Встановлюємо параметр query в URL
+        setParams({ query });
       })
       .catch(err => console.log(err));
-  };
+  }, [setParams]);
+  
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(params.toString());
+    const queryParam = queryParams.get('query');
+    if (queryParam) {
+      setSearchQuery(queryParam);
+      fetchRequest(queryParam);
+    }
+  }, [params, fetchRequest]); 
 
   const handleFormSubmit = e => {
     e.preventDefault();
 
-    fetchRequest();
+    fetchRequest(searchQuery);
   };
 
   const test = () => {
@@ -83,6 +83,7 @@ const Movies = () => {
           className={css.input}
           id="input"
           onChange={handleInputValue}
+          value={searchQuery} // Додав value, щоб відображати введений текст
         ></input>
         <button className={css.searchBtn}>Search</button>
       </form>
