@@ -1,0 +1,37 @@
+.input {
+  width: 200px;
+  border-radius: 10px;
+  height: 20px;
+
+  margin-top: 20px;
+  margin-right: 10px;
+
+  border-color: rgb(9, 159, 236);
+}
+
+.input:hover {
+  border-color: radial-gradient(
+    circle,
+    rgba(9, 159, 236, 1) 0%,
+    rgba(49, 108, 139, 1) 100%
+  );
+}
+
+input:focus {
+  outline: transparent;
+  border: solid, 2px;
+
+  border-color: rgb(9, 159, 236);
+
+  box-shadow: -1px 7px 39px 0px rgba(86, 90, 183, 1);
+}
+
+.searchBtn {
+  width: 80px;
+  height: 30px;
+  border-radius: 10px;
+  outline: none;
+  border-color: rgb(9, 159, 236);
+
+  font-size: 14px;
+}

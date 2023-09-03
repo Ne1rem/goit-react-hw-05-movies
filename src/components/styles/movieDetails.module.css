@@ -1,0 +1,52 @@
+.movieContainer {
+  margin-top: 15px;
+}
+
+.description {
+  display: flex;
+  gap: 20px;
+
+  box-shadow: -1px 1px 24px -9px rgba(66, 68, 90, 1);
+}
+.buttonback {
+  padding: 4px 8px;
+  margin: 0 16px 16px 0;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  background-color: #6e68be;
+  cursor: pointer;
+}
+.posterImg {
+  height: 300px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+.list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.genres {
+  display: flex;
+  gap: 10px;
+}
+
+.genre {
+  padding: 0;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+
+  box-shadow: -1px 1px 24px -9px rgba(66, 68, 90, 1);
+}
+
+.infoTitle {
+  font-weight: 500;
+}
