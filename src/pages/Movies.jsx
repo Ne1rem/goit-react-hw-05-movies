@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
+
 import '../components/movies.css';
+
 import css from '../components/styles/movies.module.css';
 
 const Movies = () => {
@@ -15,7 +18,6 @@ const Movies = () => {
     const queryParam = queryParams.get('query');
     if (queryParam) {
       setSearchQuery(queryParam);
-      fetchRequest(queryParam); 
     }
   }, [params]);
 
@@ -23,13 +25,13 @@ const Movies = () => {
     setSearchQuery(e.target.value);
   };
 
-  const fetchRequest = (query) => {
-    if (query === '') {
+  const fetchRequest = () => {
+    if (searchQuery === '') {
       return;
     }
 
     fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=a42bf4f31f7d8fb3cfc076b340ef7462`
+      `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&api_key=a42bf4f31f7d8fb3cfc076b340ef7462`
     )
       .then(res => res.json())
       .then(data => {
@@ -40,8 +42,8 @@ const Movies = () => {
             destination: 'https://github.com/apvarun/toastify-js',
             newWindow: true,
             close: true,
-            gravity: 'top',
-            position: 'center',
+            gravity: 'top', 
+            position: 'center', 
             stopOnFocus: true,
             style: {
               background:
@@ -53,7 +55,7 @@ const Movies = () => {
 
         setSearchedMovie(data.results);
 
-        setParams({ query });
+        setParams({ query: searchQuery });
       })
       .catch(err => console.log(err));
   };
@@ -61,7 +63,7 @@ const Movies = () => {
   const handleFormSubmit = e => {
     e.preventDefault();
 
-    fetchRequest(searchQuery);
+    fetchRequest();
   };
 
   const test = () => {
@@ -81,7 +83,6 @@ const Movies = () => {
           className={css.input}
           id="input"
           onChange={handleInputValue}
-          value={searchQuery}
         ></input>
         <button className={css.searchBtn}>Search</button>
       </form>
