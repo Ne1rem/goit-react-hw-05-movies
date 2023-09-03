@@ -63,6 +63,8 @@ const Movies = () => {
     e.preventDefault();
 
     fetchRequest(searchQuery);
+
+    
   };
 
   const test = () => {
