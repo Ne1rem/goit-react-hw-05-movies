@@ -16,7 +16,7 @@ const Home = () => {
 
   useEffect(() => {
     fetch(
-      'https://api.themoviedb.org/3/trending/all/day?language=en-US&api_key=a42bf4f31f7d8fb3cfc076b340ef7462'
+      'https://api.themoviedb.org/3/trending/all/day?language=en-US&api_key=167940d181678e9686c25c43b11eb557'
     )
       .then(res => res.json())
       .then(data => {

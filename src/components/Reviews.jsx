@@ -10,7 +10,7 @@ const Reviews = () => {
     const fetchReviews = () => {
       fetch(
         `
-https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=a42bf4f31f7d8fb3cfc076b340ef7462`
+https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=167940d181678e9686c25c43b11eb557`
       )
         .then(resp => resp.json())
         .then(data => {

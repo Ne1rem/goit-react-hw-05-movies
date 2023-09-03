@@ -10,11 +10,11 @@ function Cast() {
 
   const baseApiUrl = 'https://image.tmdb.org/t/p/w500';
 
-  const apiKey = 'a42bf4f31f7d8fb3cfc076b340ef7462';
+  const apiKey = '167940d181678e9686c25c43b11eb557';
 
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=a42bf4f31f7d8fb3cfc076b340ef7462`
+      `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=167940d181678e9686c25c43b11eb557`
     )
       .then(res => res.json())
       .then(data => {
